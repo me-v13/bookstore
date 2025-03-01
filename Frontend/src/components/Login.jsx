@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
@@ -9,7 +9,13 @@ function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const navigate=useNavigate();
+  const RefreshSignup=()=>{
+    navigate("/signup")
+    window.location.reload();
+   
+  }
+ 
   const onSubmit = async (data) => {
     const userInfo = {
       email: data.email,
@@ -93,12 +99,10 @@ function Login() {
               </button>
               <p>
                 Not registered?{" "}
-                <Link
-                  to="/signup"
-                  className="underline text-blue-500 cursor-pointer"
-                >
+                
+                  <a onClick={RefreshSignup}  className="underline text-blue-500 cursor-pointer">
                   Signup
-                </Link>{" "}
+                  </a>
               </p>
             </div>
           </form>
